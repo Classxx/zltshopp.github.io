@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="button-container">
+        <button id="languageButton" class="language-button">🌍</button>
+        <button id="themeToggle" class="theme-toggle-button">🌙</button>
+    </div>
+
+    <div class="container">
+        <h1>Список игр</h1>
+        <input type="text" id="searchInput" placeholder="Поиск игр...">
+        <ul id="gameList"></ul>
+    </div>
+
+    <div class="footer-menu">
+        <button class="menu-button" onclick="location.href='index.html';">Главное меню</button>
+        <button class="menu-button" onclick="location.href='cart.html';">Корзина</button>
+        <button class="menu-button" onclick="location.href='faq.html';">FAQ</button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Инициализация Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+
+        // Установка начальной темы в соответствии с API Telegram
+        const updateTheme = (isDark) => {
+            if (isDark) {
+                document.body.classList.add('dark');
+                tg.MainButton.color = "#ffffff"; // Цвет кнопки в темной теме
+            } else {
+                document.body.classList.remove('dark');
+                tg.MainButton.color = "#007bff"; // Цвет кнопки в светлой теме
+            }
+        };
+
+        // Установка начальной темы
+        let isDarkTheme = false;
+        updateTheme(isDarkTheme);
+
+        // Переключение темы
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            isDarkTheme = !isDarkTheme;
+            updateTheme(isDarkTheme);
+            // Сохранение темы в Telegram Web App
+            tg.Data.theme = isDarkTheme ? 'dark' : 'light';
+        });
+    </script>
+</body>
+</html>
+

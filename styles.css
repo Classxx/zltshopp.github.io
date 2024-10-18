@@ -1,0 +1,212 @@
+@font-face {
+    font-family: 'MagnetTrial';
+    src: url('./fonts/MagnetTrial-Regular.ttf')
+}
+
+:root {
+    --background-color: #eef2f3;
+    --container-bg: #ffffff;
+    --input-border: #007bff;
+    --list-bg: #f9f9f9;
+    --list-hover-bg: #e9ecef;
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --text-color: #333; /* Черный цвет текста для светлой темы */
+    --block-bg: #f0f0f0; /* Цвет блока */
+    --block-text-color: #333; /* Цвет текста в блоке */
+}
+
+/* Общие стили для html и body */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Убираем прокрутку сайта */
+}
+
+body {
+    font-family: 'MagnetTrial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column; /* Изменено на column для лучшего выравнивания */
+    align-items: center; /* Центрирование содержимого */
+    justify-content: flex-start; /* Элементы располагаются сверху */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Контейнер для основной части */
+.container {
+    text-align: center;
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 100%;
+    margin-top: 20px; /* Отступ сверху для улучшения визуализации */
+    flex: 1; /* Занимаем доступное пространство */
+    display: flex; /* Для управления прокруткой списка */
+    flex-direction: column; /* Размещаем элементы вертикально */
+}
+
+/* Заголовок */
+h1 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+/* Поле ввода поиска */
+#searchInput {
+    padding: 10px;
+    width: 100%; /* Ширина в 100% */
+    box-sizing: border-box; /* Учитываем отступы */
+    border: 2px solid var(--input-border);
+    border-radius: 25px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+#searchInput:focus {
+    border-color: #0056b3;
+}
+
+/* Список игр */
+ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Занимаем все доступное пространство */
+    overflow-y: auto; /* Прокрутка */
+    max-height: calc(100vh - 200px); /* Максимальная высота списка (100vh минус высота футера и других элементов) */
+    padding-bottom: 50px; /* Отступ снизу для предотвращения наложения футера */
+    -webkit-overflow-scrolling: touch; /* Поддержка прокрутки на мобильных устройствах */
+}
+
+li {
+    padding: 10px;
+    background-color: var(--list-bg);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Убираем подчеркивание для ссылок */
+li a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Устанавливаем цвет ссылки в соответствии с цветом текста */
+}
+
+li:hover {
+    background-color: var(--list-hover-bg);
+    transform: scale(1.02);
+}
+
+/* Установка отступа для последнего элемента списка */
+ul li:last-child {
+    margin-bottom: 150px; /* Устанавливаем отступ в 100 пикселей */
+}
+
+/* Стили кнопок изменения языка и темы */
+.button-container {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: calc(100% - 30px);
+    display: flex;
+    justify-content: space-between;
+}
+
+.language-button,
+.theme-toggle-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--button-bg);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex; /* Используем flex для центрирования содержимого */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+}
+
+.language-button:hover,
+.theme-toggle-button:hover {
+    background-color: var(--button-hover-bg);
+    transform: scale(1.1);
+}
+
+/* Меню внизу */
+.footer-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    background: transparent;
+}
+
+.menu-button {
+    flex: 1;
+    margin: 0 5px;
+    border-radius: 15px;
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    padding: 15px 0;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* Убираем подчеркивание для кнопок */
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Темная тема */
+body.dark {
+    --background-color: #121212;
+    --container-bg: #1e1e1e;
+    --input-border: #bb86fc;
+    --list-bg: #272727;
+    --list-hover-bg: #383838;
+    --button-bg: #bb86fc;
+    --button-hover-bg: #9e66d5;
+    --text-color: #ffffff; /* Цвет текста для темной темы */
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+    #searchInput {
+        font-size: 14px;
+    }
+
+    li {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .menu-button {
+        font-size: 14px;
+    }
+}
+
+/* Убираем скроллбар */
+ul::-webkit-scrollbar {
+    display: none;
+}
